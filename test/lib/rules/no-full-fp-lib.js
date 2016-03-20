@@ -14,12 +14,11 @@ var rule = require("../../../lib/rules/no-full-fp-lib"),
     RuleTester = require("eslint").RuleTester;
 
 RuleTester.setDefaultConfig({
-  parser: 'babel-eslint',
-  ecmaFeatures: {
-    modules: true,
-  },
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: "module"
+  }
 });
-
 
 //------------------------------------------------------------------------------
 // Tests
@@ -28,9 +27,7 @@ RuleTester.setDefaultConfig({
 var ruleTester = new RuleTester();
 ruleTester.run("no-full-fp-lib", rule, {
 
-    valid: [
-      "import $ from 'jquery';",
-      "import { filter } from 'lodash/fp'"
+    valid: ["import $ from 'jquery';", "import { filter } from 'lodash/fp'"
     ],
 
     invalid: [
