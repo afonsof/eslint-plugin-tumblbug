@@ -1,6 +1,6 @@
 # Full FP libs should not be imported (no-full-fp-lib)
 
-To enable us to do tree-sharking, full FP libs should not be imported.
+To be able to do tree-shaking, full FP libs should not be imported.
 
 ## Rule Details
 
@@ -10,6 +10,8 @@ The following patterns are considered warnings:
 
 ```js
 
+var _ = require('lodash');
+
 import _ from 'lodash';
 
 ```
@@ -18,10 +20,12 @@ The following patterns are not warnings:
 
 ```js
 
-import { map } from 'lodash/fp';
+var map = require('lodash/fp/map');
+
+import map from 'lodash/map';
 
 ```
 
 ## Further Reading
 
-Need to add some links here.
+https://lodash.com/

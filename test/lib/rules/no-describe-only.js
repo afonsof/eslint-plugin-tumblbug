@@ -1,5 +1,5 @@
 /**
- * @fileoverview Full FP libs should not be imported
+ * @fileoverview describe.only should be removed before commits
  * @author Bjorn Tegelund
  * @copyright 2016 Bjorn Tegelund. All rights reserved.
  * See LICENSE file in root directory for full license.
@@ -10,32 +10,29 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require('../../../lib/rules/no-full-fp-lib'),
+var rule = require('../../../lib/rules/no-describe-only'),
   RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
   parser: 'babel-eslint',
-  ecmaFeatures: {
-    modules: true,
-  },
 });
-
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
-ruleTester.run('no-full-fp-lib', rule, {
+ruleTester.run('no-describe-only', rule, {
   valid: [
-    'import map from \'lodash/map\';',
+    'describe(\'bob\', () => { })',
   ],
+
   invalid: [
     {
-      code: 'import _ from \'lodash\';',
+      code: 'describe.only(\'bob\', () => { })',
       errors: [{
-        message: 'Import inidividual functions instead of full FP libraries',
-        type: 'ImportDeclaration'
+        message: 'Do not use describe.only',
+        type: ''
       }]
     }
   ]
