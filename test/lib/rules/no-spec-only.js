@@ -10,7 +10,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require('../../../lib/rules/no-describe-only'),
+var rule = require('../../../lib/rules/no-spec-only'),
   RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
@@ -22,9 +22,11 @@ RuleTester.setDefaultConfig({
 //------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
-ruleTester.run('no-describe-only', rule, {
+ruleTester.run('no-spec-only', rule, {
   valid: [
     'describe(\'bob\', () => { })',
+    'context(\'frank\', () => { })',
+    'it(\'floats\', () => { })',
   ],
 
   invalid: [
@@ -34,6 +36,20 @@ ruleTester.run('no-describe-only', rule, {
         message: 'Do not use describe.only',
         type: ''
       }]
-    }
+    },
+    {
+      code: 'context.only(\'richard\', () => { })',
+      errors: [{
+        message: 'Do not use context.only',
+        type: ''
+      }]
+    },
+    {
+      code: 'it.only(\'flies\', () => { })',
+      errors: [{
+        message: 'Do not use it.only',
+        type: ''
+      }]
+    },
   ]
 });
