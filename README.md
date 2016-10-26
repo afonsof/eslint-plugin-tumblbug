@@ -1,5 +1,7 @@
 # eslint-plugin-tumblbug
 
+[![NPM](https://img.shields.io/npm/v/eslint-plugin-tumblbug.svg)](https://www.npmjs.com/package/eslint-plugin-tumblbug)
+
 Custom eslint rules by Tumblbug, Inc.
 
 ## Installation
